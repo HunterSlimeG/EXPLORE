@@ -1,0 +1,11 @@
+{
+	"Tutorials" : true,
+	"fullscreen_on" : false,
+	"display_fps" : false,
+	"max_fps" : 60,
+	"brightness" : 50,
+	"master_vol" : 100,
+	"music_vol" : 100,
+	"sfx_vol" : 100,
+	"mouse_sens" : 1,
+}

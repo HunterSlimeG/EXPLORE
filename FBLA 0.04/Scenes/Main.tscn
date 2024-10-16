@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1b7j22wqjn1v"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_rqjta"]
+[ext_resource type="PackedScene" uid="uid://b0n257lvgfaej" path="res://Scenes/Player.tscn" id="2_2swwq"]
+[ext_resource type="Script" path="res://Scripts/Interaction/Hitbox.gd" id="3_c62r0"]
+[ext_resource type="PackedScene" uid="uid://bc0u7jmhdsfya" path="res://Scenes/Start.tscn" id="4_hkn6q"]
+[ext_resource type="Script" path="res://Scripts/starting_room.gd" id="4_mawqs"]
+[ext_resource type="PackedScene" uid="uid://dhpphr83tkegw" path="res://Scenes/Coin.tscn" id="5_8i5jl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jdf75"]
+size = Vector2(110, 103)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_rqjta")
+
+[node name="Player" parent="." instance=ExtResource("2_2swwq")]
+position = Vector2(579, 701)
+
+[node name="Hitboxes" type="Node2D" parent="."]
+
+[node name="Dmg1" type="Area2D" parent="Hitboxes"]
+position = Vector2(335, 270)
+monitoring = false
+script = ExtResource("3_c62r0")
+value = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitboxes/Dmg1"]
+position = Vector2(45, 41.5)
+shape = SubResource("RectangleShape2D_jdf75")
+
+[node name="Starting Room" type="Node2D" parent="."]
+script = ExtResource("4_mawqs")
+
+[node name="Coin" parent="Starting Room" instance=ExtResource("5_8i5jl")]
+position = Vector2(575, 326)
+scale = Vector2(4, 4)
+
+[node name="Start" parent="Starting Room" instance=ExtResource("4_hkn6q")]
+z_index = -1
+scale = Vector2(4, 4)
+
+[node name="Tutorial Labels" type="Node2D" parent="Starting Room"]
+
+[node name="Coin" type="Label" parent="Starting Room/Tutorial Labels"]
+offset_left = 452.0
+offset_top = 251.0
+offset_right = 697.0
+offset_bottom = 274.0
+text = "Walk over coins to collect them."
+
+[connection signal="scoreSignal" from="Player" to="Starting Room" method="_on_player_score_signal"]
+[connection signal="scoreSignal" from="Player" to="Starting Room/Coin" method="_on_player_score_signal"]
