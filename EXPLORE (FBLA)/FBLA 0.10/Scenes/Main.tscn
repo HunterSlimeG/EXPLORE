@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://c1b7j22wqjn1v"]
+
+[ext_resource type="Script" path="res://Scripts/main.gd" id="1_rqjta"]
+[ext_resource type="PackedScene" uid="uid://b0n257lvgfaej" path="res://Scenes/Player.tscn" id="2_2swwq"]
+[ext_resource type="PackedScene" uid="uid://bc0u7jmhdsfya" path="res://Scenes/Start.tscn" id="4_hkn6q"]
+[ext_resource type="Script" path="res://Scripts/starting_room.gd" id="4_mawqs"]
+[ext_resource type="PackedScene" uid="uid://dhpphr83tkegw" path="res://Scenes/Coin.tscn" id="5_8i5jl"]
+[ext_resource type="PackedScene" uid="uid://r77ro7c12fla" path="res://Scenes/Room_Cross.tscn" id="7_5m1tj"]
+[ext_resource type="PackedScene" uid="uid://b28skby5iojjb" path="res://Scenes/Spike.tscn" id="7_wavc8"]
+[ext_resource type="PackedScene" uid="uid://comn4odc0p3f7" path="res://Scenes/Room_Chest.tscn" id="8_wd0ai"]
+[ext_resource type="PackedScene" uid="uid://ccph63co4wx85" path="res://Scenes/Chest.tscn" id="9_vljqw"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_rqjta")
+
+[node name="Player" parent="." instance=ExtResource("2_2swwq")]
+position = Vector2(575, 701)
+
+[node name="Starting Room" type="Node2D" parent="."]
+script = ExtResource("4_mawqs")
+
+[node name="Start" parent="Starting Room" instance=ExtResource("4_hkn6q")]
+z_index = -1
+position = Vector2(-1, 0)
+scale = Vector2(4, 4)
+
+[node name="Spike" parent="Starting Room" instance=ExtResource("7_wavc8")]
+position = Vector2(447, -64)
+scale = Vector2(4, 4)
+
+[node name="Spike2" parent="Starting Room" instance=ExtResource("7_wavc8")]
+position = Vector2(703, -324)
+rotation = 3.14159
+scale = Vector2(4, 4)
+
+[node name="Spike3" parent="Starting Room" instance=ExtResource("7_wavc8")]
+position = Vector2(703, -832)
+rotation = 3.14159
+scale = Vector2(4, 4)
+
+[node name="Spike4" parent="Starting Room" instance=ExtResource("7_wavc8")]
+position = Vector2(447, -576)
+scale = Vector2(4, 4)
+
+[node name="Choice 1" type="Node2D" parent="."]
+
+[node name="Room Cross" parent="Choice 1" instance=ExtResource("7_5m1tj")]
+z_index = -1
+position = Vector2(511, -1408)
+scale = Vector2(4, 4)
+
+[node name="Room Chest" parent="Choice 1" instance=ExtResource("8_wd0ai")]
+position = Vector2(-897, -1280)
+scale = Vector2(4, 4)
+
+[node name="Tutorial Labels" type="Node2D" parent="."]
+
+[node name="Coin" type="Label" parent="Tutorial Labels"]
+offset_left = 452.0
+offset_top = 251.0
+offset_right = 697.0
+offset_bottom = 274.0
+text = "Walk over coins to collect them."
+
+[node name="Spike" type="Label" parent="Tutorial Labels"]
+offset_left = 366.0
+offset_top = 5.0
+offset_right = 785.0
+offset_bottom = 28.0
+text = "Dodge obstacles and enemies to avoid taking damage."
+
+[node name="Sign" type="Label" parent="Tutorial Labels"]
+visible = false
+offset_left = 425.0
+offset_top = -1432.0
+offset_right = 726.0
+offset_bottom = -1409.0
+text = "Interact with signs by clicking on them."
+
+[node name="Chest" parent="." instance=ExtResource("9_vljqw")]
+z_index = -1
+position = Vector2(-1215, -1337)
+scale = Vector2(4, 4)
+
+[node name="Coin" parent="." instance=ExtResource("5_8i5jl")]
+position = Vector2(575, 337)

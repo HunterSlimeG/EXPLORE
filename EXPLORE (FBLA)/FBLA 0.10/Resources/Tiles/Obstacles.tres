@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dq2wv65dkypvo"]
+
+[ext_resource type="Texture2D" uid="uid://cmpblclw18qip" path="res://Resources/Tiles/Obstacles.png" id="1_gbwba"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7bim"]
+texture = ExtResource("1_gbwba")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[resource]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 9
+physics_layer_0/collision_mask = 9
+sources/0 = SubResource("TileSetAtlasSource_n7bim")
