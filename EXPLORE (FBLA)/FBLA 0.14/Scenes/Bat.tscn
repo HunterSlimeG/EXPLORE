@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://crrgrlu3476er"]
+
+[ext_resource type="Texture2D" uid="uid://ckmnuawt57mis" path="res://Resources/Sprites/Bat.png" id="1_6hswj"]
+[ext_resource type="Script" path="res://Scripts/Interaction/bat.gd" id="1_tfnox"]
+[ext_resource type="Script" path="res://Scripts/Interaction/Hitbox.gd" id="3_adigm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fejj5"]
+atlas = ExtResource("1_6hswj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_chidf"]
+atlas = ExtResource("1_6hswj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3el0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fejj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_chidf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nqje2"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_scp1p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xidp"]
+radius = 170.074
+
+[node name="Bat" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_tfnox")
+
+[node name="Bat" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w3el0")
+autoplay = "default"
+frame_progress = 0.165306
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("3_adigm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_nqje2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_scp1p")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0xidp")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
