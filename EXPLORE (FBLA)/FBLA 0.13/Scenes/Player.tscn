@@ -1,0 +1,92 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0n257lvgfaej"]
+
+[ext_resource type="Script" path="res://Scripts/Interaction/player.gd" id="1_j5xgm"]
+[ext_resource type="Script" path="res://Scripts/Interaction/Hurtbox.gd" id="2_e8edn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_alk0k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n14ew"]
+bg_color = Color(0.448121, 0.0333461, 0.104978, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fk8w1"]
+bg_color = Color(0.672532, 0.0730879, 0.174875, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7tmuj"]
+radius = 13.7143
+height = 35.4286
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_85xg8"]
+radius = 13.7143
+height = 35.4286
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(3.5, 3.5)
+script = ExtResource("1_j5xgm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_alk0k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+layout_mode = 0
+offset_left = -264.286
+offset_top = -147.143
+offset_right = -14.2857
+offset_bottom = -97.1429
+scale = Vector2(0.5, 0.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_n14ew")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fk8w1")
+value = 100.0
+
+[node name="Score" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = -180.857
+offset_top = -121.714
+offset_right = -119.857
+offset_bottom = -98.7143
+scale = Vector2(0.5, 0.5)
+text = "Score: 0"
+
+[node name="Score2" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = -258.286
+offset_top = -121.714
+offset_right = -134.286
+offset_bottom = -98.7143
+scale = Vector2(0.5, 0.5)
+text = "Highest Score: 0"
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("2_e8edn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_7tmuj")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_85xg8")
