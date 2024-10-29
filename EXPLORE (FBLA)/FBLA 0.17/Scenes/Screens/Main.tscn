@@ -1,0 +1,246 @@
+[gd_scene load_steps=25 format=3 uid="uid://c1b7j22wqjn1v"]
+
+[ext_resource type="Script" path="res://Scripts/Screens/main.gd" id="1_u5or1"]
+[ext_resource type="PackedScene" uid="uid://b0n257lvgfaej" path="res://Scenes/Interaction/Player.tscn" id="2_mwdkf"]
+[ext_resource type="PackedScene" uid="uid://bc0u7jmhdsfya" path="res://Scenes/Rooms/Start.tscn" id="4_1h06k"]
+[ext_resource type="PackedScene" uid="uid://b28skby5iojjb" path="res://Scenes/Interaction/Spike.tscn" id="5_xckxl"]
+[ext_resource type="PackedScene" uid="uid://r77ro7c12fla" path="res://Scenes/Rooms/Room_Cross.tscn" id="6_7sb8l"]
+[ext_resource type="Script" path="res://Scripts/Rooms/room_left.gd" id="7_dlfbk"]
+[ext_resource type="Script" path="res://Scripts/Rooms/room_right.gd" id="8_ihnmc"]
+[ext_resource type="Script" path="res://Scripts/Rooms/room_middle.gd" id="9_eiaxb"]
+[ext_resource type="Script" path="res://Scripts/Rooms/room_end.gd" id="10_r8yo2"]
+[ext_resource type="Script" path="res://Scripts/Rooms/room_up.gd" id="11_du33c"]
+[ext_resource type="Script" path="res://Scripts/Rooms/room_end_alt.gd" id="12_hq2sp"]
+[ext_resource type="PackedScene" uid="uid://b56r37pl35ytj" path="res://Scenes/Rooms/Room_Finish.tscn" id="13_ktihk"]
+[ext_resource type="Texture2D" uid="uid://cf23cpfjp8wu3" path="res://Resources/Sprites/Rope.png" id="14_u7757"]
+[ext_resource type="Script" path="res://Scripts/Interaction/rope.gd" id="15_kmoc8"]
+[ext_resource type="PackedScene" uid="uid://dhpphr83tkegw" path="res://Scenes/Interaction/Coin.tscn" id="16_a2an6"]
+[ext_resource type="PackedScene" uid="uid://bo7wu0h8a3cln" path="res://Scenes/Rooms/BG.tscn" id="17_nj6d7"]
+[ext_resource type="PackedScene" uid="uid://bgw6bnk7htssx" path="res://Scenes/Interaction/Cursor.tscn" id="18_qjcw8"]
+
+[sub_resource type="GDScript" id="GDScript_hj6ox"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qb62"]
+atlas = ExtResource("14_u7757")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvldc"]
+atlas = ExtResource("14_u7757")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxbgy"]
+atlas = ExtResource("14_u7757")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0tmu"]
+atlas = ExtResource("14_u7757")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_06ie4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qb62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dvldc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxbgy")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_i0tmu")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q54k3"]
+size = Vector2(20, 34.75)
+
+[node name="Main" type="Node2D"]
+position = Vector2(1, 0)
+script = ExtResource("1_u5or1")
+
+[node name="Player" parent="." instance=ExtResource("2_mwdkf")]
+position = Vector2(575, 701)
+
+[node name="Starting Room" type="Node2D" parent="."]
+script = SubResource("GDScript_hj6ox")
+
+[node name="Start" parent="Starting Room" instance=ExtResource("4_1h06k")]
+z_index = -1
+position = Vector2(-1, 0)
+scale = Vector2(4, 4)
+
+[node name="Spike" parent="Starting Room" instance=ExtResource("5_xckxl")]
+position = Vector2(447, -64)
+scale = Vector2(4, 4)
+
+[node name="Spike2" parent="Starting Room" instance=ExtResource("5_xckxl")]
+position = Vector2(703, -324)
+rotation = 3.14159
+scale = Vector2(4, 4)
+
+[node name="Spike3" parent="Starting Room" instance=ExtResource("5_xckxl")]
+position = Vector2(703, -832)
+rotation = 3.14159
+scale = Vector2(4, 4)
+
+[node name="Spike4" parent="Starting Room" instance=ExtResource("5_xckxl")]
+position = Vector2(447, -576)
+scale = Vector2(4, 4)
+
+[node name="Rooms" type="Node2D" parent="."]
+
+[node name="Room Cross" parent="Rooms" instance=ExtResource("6_7sb8l")]
+position = Vector2(575, -640)
+
+[node name="Split 1" type="Node2D" parent="Rooms"]
+
+[node name="Room Left" type="Node2D" parent="Rooms/Split 1"]
+position = Vector2(-129, -1344)
+script = ExtResource("7_dlfbk")
+
+[node name="Room Right" type="Node2D" parent="Rooms/Split 1"]
+position = Vector2(1279, -1344)
+script = ExtResource("8_ihnmc")
+
+[node name="Room Middle" type="Node2D" parent="Rooms/Split 1"]
+position = Vector2(575, -2048)
+script = ExtResource("9_eiaxb")
+
+[node name="Split 2" type="Node2D" parent="Rooms"]
+
+[node name="Room End" type="Node2D" parent="Rooms/Split 2"]
+position = Vector2(-1538, -1344)
+script = ExtResource("10_r8yo2")
+
+[node name="Room Up" type="Node2D" parent="Rooms/Split 2"]
+position = Vector2(-834, -2048)
+script = ExtResource("11_du33c")
+
+[node name="Split 3" type="Node2D" parent="Rooms"]
+
+[node name="Room End Alt" type="Node2D" parent="Rooms/Split 3"]
+position = Vector2(2688, -1344)
+script = ExtResource("12_hq2sp")
+
+[node name="Room Up" type="Node2D" parent="Rooms/Split 3"]
+position = Vector2(1983, -2048)
+script = ExtResource("11_du33c")
+
+[node name="Split 4" type="Node2D" parent="Rooms"]
+
+[node name="Room Middle" type="Node2D" parent="Rooms/Split 4"]
+position = Vector2(575, -3456)
+script = ExtResource("9_eiaxb")
+
+[node name="Split 5" type="Node2D" parent="Rooms"]
+position = Vector2(-1, -1401)
+
+[node name="Room End" type="Node2D" parent="Rooms/Split 5"]
+position = Vector2(-1537, -1353)
+script = ExtResource("10_r8yo2")
+
+[node name="Room Up" type="Node2D" parent="Rooms/Split 5"]
+position = Vector2(-833, -2055)
+script = ExtResource("11_du33c")
+
+[node name="Split 6" type="Node2D" parent="Rooms"]
+position = Vector2(-1, -1401)
+
+[node name="Room End Alt" type="Node2D" parent="Rooms/Split 6"]
+position = Vector2(2689, -1353)
+script = ExtResource("12_hq2sp")
+
+[node name="Room Up" type="Node2D" parent="Rooms/Split 6"]
+position = Vector2(1984, -2055)
+script = ExtResource("11_du33c")
+
+[node name="Room Finish" parent="Rooms" instance=ExtResource("13_ktihk")]
+position = Vector2(575, -4864)
+
+[node name="Rope" type="AnimatedSprite2D" parent="Rooms/Room Finish"]
+position = Vector2(0, -275.25)
+sprite_frames = SubResource("SpriteFrames_06ie4")
+script = ExtResource("15_kmoc8")
+
+[node name="Area2D" type="Area2D" parent="Rooms/Room Finish/Rope"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/Room Finish/Rope/Area2D"]
+position = Vector2(0, -0.125)
+shape = SubResource("RectangleShape2D_q54k3")
+
+[node name="Tutorial Labels" type="Node2D" parent="."]
+
+[node name="Coin" type="Label" parent="Tutorial Labels"]
+offset_left = 452.0
+offset_top = 251.0
+offset_right = 697.0
+offset_bottom = 274.0
+text = "Walk over coins to collect them."
+
+[node name="Spike" type="Label" parent="Tutorial Labels"]
+offset_left = 366.0
+offset_top = 5.0
+offset_right = 785.0
+offset_bottom = 28.0
+text = "Dodge obstacles and enemies to avoid taking damage."
+
+[node name="Sign" type="Label" parent="Tutorial Labels"]
+visible = false
+offset_left = 425.0
+offset_top = -1432.0
+offset_right = 726.0
+offset_bottom = -1409.0
+text = "Interact with signs by clicking on them."
+
+[node name="Coin" parent="." instance=ExtResource("16_a2an6")]
+position = Vector2(575, 337)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+autostart = true
+
+[node name="BG" parent="." instance=ExtResource("17_nj6d7")]
+z_index = -2
+position = Vector2(15, -64)
+
+[node name="Timer2" type="Timer" parent="."]
+
+[node name="Cursor" parent="." instance=ExtResource("18_qjcw8")]
+
+[connection signal="roomSend" from="Rooms/Split 1/Room Left" to="." method="_on_room_left_room_send"]
+[connection signal="roomSend" from="Rooms/Split 1/Room Right" to="." method="_on_room_right_room_send"]
+[connection signal="roomSend" from="Rooms/Split 2/Room Up" to="." method="_on_room_up_room_send2"]
+[connection signal="roomSend" from="Rooms/Split 3/Room Up" to="." method="_on_room_up_room_send3"]
+[connection signal="roomSend" from="Rooms/Split 5/Room Up" to="." method="_on_room_up_room_send5"]
+[connection signal="roomSend" from="Rooms/Split 6/Room Up" to="." method="_on_room_up_room_send6"]
+[connection signal="finish" from="Rooms/Room Finish/Rope" to="." method="_on_rope_finish"]
+[connection signal="input_event" from="Rooms/Room Finish/Rope/Area2D" to="Rooms/Room Finish/Rope" method="_on_area_2d_input_event"]
+[connection signal="timeout" from="Timer" to="Rooms/Split 1/Room Left" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Rooms/Split 1/Room Right" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Rooms/Split 1/Room Middle" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Rooms/Split 2/Room End" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Rooms/Split 2/Room Up" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Rooms/Split 3/Room End Alt" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="Rooms/Split 3/Room Up" method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

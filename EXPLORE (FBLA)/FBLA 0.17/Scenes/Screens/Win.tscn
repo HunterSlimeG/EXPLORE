@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://dh6tr2cv4wbqq"]
+
+[ext_resource type="Script" path="res://Scripts/Screens/win.gd" id="1_3ku0n"]
+[ext_resource type="PackedScene" uid="uid://dpemvr8ehylmu" path="res://Scenes/Interaction/Artifact.tscn" id="2_wfjts"]
+[ext_resource type="PackedScene" uid="uid://bgw6bnk7htssx" path="res://Scenes/Interaction/Cursor.tscn" id="3_glflk"]
+
+[node name="Win" type="Node2D"]
+script = ExtResource("1_3ku0n")
+
+[node name="Text" type="Label" parent="."]
+offset_top = 151.0
+offset_right = 385.0
+offset_bottom = 174.0
+scale = Vector2(5, 5)
+text = "You have Escaped!"
+horizontal_alignment = 1
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+offset_top = 653.0
+offset_right = 960.0
+offset_bottom = 693.0
+scale = Vector2(2, 2)
+
+[node name="Menu" type="Button" parent="AspectRatioContainer"]
+layout_mode = 2
+action_mode = 0
+text = "Main Menu
+"
+
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="."]
+offset_top = 544.0
+offset_right = 960.0
+offset_bottom = 584.0
+scale = Vector2(2, 2)
+
+[node name="Respawn" type="Button" parent="AspectRatioContainer2"]
+layout_mode = 2
+action_mode = 0
+text = "New Run"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Score" type="Label" parent="."]
+offset_top = 369.0
+offset_right = 640.0
+offset_bottom = 392.0
+scale = Vector2(3, 3)
+text = "Score: 0"
+horizontal_alignment = 1
+
+[node name="Score2" type="Label" parent="."]
+offset_top = 300.0
+offset_right = 640.0
+offset_bottom = 323.0
+scale = Vector2(3, 3)
+text = "High Score: 0"
+horizontal_alignment = 1
+
+[node name="Artifact" parent="." instance=ExtResource("2_wfjts")]
+z_index = -1
+position = Vector2(959, 380)
+scale = Vector2(8, 8)
+
+[node name="Cursor" parent="." instance=ExtResource("3_glflk")]
+
+[connection signal="pressed" from="AspectRatioContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="AspectRatioContainer2/Respawn" to="." method="_on_respawn_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="animation_finished" from="Artifact" to="." method="_on_artifact_finished"]
