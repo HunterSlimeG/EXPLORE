@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://2cwwdidf6lxu"]
+
+[ext_resource type="FontFile" uid="uid://dy4dxjn3br31p" path="res://Resources/Themes/PixelOperator8-Bold.ttf" id="1_jqno4"]
+[ext_resource type="FontFile" uid="uid://cfo2qxhjgnl1q" path="res://Resources/Themes/PixelOperator8.ttf" id="1_slxfm"]
+
+[resource]
+Button/constants/outline_size = 8
+Button/fonts/font = ExtResource("1_slxfm")
+TabBar/constants/outline_size = 8
+TabBar/fonts/font = ExtResource("1_jqno4")
