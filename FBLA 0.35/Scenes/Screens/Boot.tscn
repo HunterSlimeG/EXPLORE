@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://cna6tuxe5j2hp"]
+
+[ext_resource type="Theme" uid="uid://dchsfnmpldp4" path="res://Resources/Themes/Menu_Button_Bold.tres" id="1_3rgxr"]
+[ext_resource type="Script" path="res://Scripts/Screens/boot.gd" id="1_f7idu"]
+[ext_resource type="Theme" uid="uid://2cwwdidf6lxu" path="res://Resources/Themes/Menu_Button.tres" id="2_t27rl"]
+[ext_resource type="PackedScene" uid="uid://bgw6bnk7htssx" path="res://Scenes/Interaction/Cursor.tscn" id="4_1jkos"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qius7"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mbcrf"]
+line_spacing = 50.0
+
+[node name="Boot" type="Node2D"]
+script = ExtResource("1_f7idu")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qius7")
+
+[node name="Label" type="Label" parent="."]
+offset_top = 100.0
+offset_right = 640.0
+offset_bottom = 123.0
+scale = Vector2(3, 3)
+theme = ExtResource("1_3rgxr")
+text = "Welcome!:"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_left = -1.0
+offset_top = 740.0
+offset_right = 959.0
+offset_bottom = 815.0
+scale = Vector2(2, 2)
+
+[node name="Button" type="Button" parent="CenterContainer"]
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme = ExtResource("1_3rgxr")
+text = "Continue
+"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 160.547
+offset_top = 342.25
+offset_right = 1439.67
+offset_bottom = 556.25
+scale = Vector2(1.25, 1.25)
+theme = ExtResource("2_t27rl")
+text = "This game and its assets were made in art with the Godot Engine and Aseprite. This game creates and edits files in the \"\\AppData\\Roaming\\HSG\\EXPLORE\\Saves\" folder automatically to store data. Hope you enjoy and have fun playing! :)"
+label_settings = SubResource("LabelSettings_mbcrf")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Cursor" parent="." instance=ExtResource("4_1jkos")]
+
+[connection signal="pressed" from="CenterContainer/Button" to="." method="_on_button_pressed"]
