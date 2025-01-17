@@ -1,6 +1,6 @@
 Hello!
 Welcome to our FBLA Computer Game and Simulation Programming entry!
-Creators: Samuel Silva, Matthew Causey
+Creators: Samuel, Matthew
 
 Running Instructions:
 ----------------------
