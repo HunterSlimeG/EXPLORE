@@ -1,9 +1,0 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dchsfnmpldp4"]
-
-[ext_resource type="FontFile" uid="uid://dy4dxjn3br31p" path="res://Resources/Themes/PixelOperator8-Bold.ttf" id="1_k6hun"]
-
-[resource]
-Button/constants/outline_size = 8
-Button/fonts/font = ExtResource("1_k6hun")
-Label/constants/outline_size = 8
-Label/fonts/font = ExtResource("1_k6hun")
