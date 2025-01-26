@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dud3h2efbu6f3"]
-
-[ext_resource type="PackedScene" uid="uid://uiqeh3frye4k" path="res://Scenes/Rooms/Room_Block.tscn" id="1_puhga"]
-
-[node name="Room Block" type="Node2D"]
-
-[node name="Room Block" parent="." instance=ExtResource("1_puhga")]
-position = Vector2(320, -320)
