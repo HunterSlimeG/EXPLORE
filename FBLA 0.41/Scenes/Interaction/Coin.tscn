@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhpphr83tkegw"]
+
+[ext_resource type="Texture2D" uid="uid://cyv4bekp4jgmg" path="res://Resources/Sprites/Coin.png" id="1_hvxfd"]
+[ext_resource type="Script" path="res://Scripts/Interaction/coin.gd" id="2_7rt3b"]
+[ext_resource type="Script" path="res://Scripts/Interaction/Hitbox.gd" id="2_ivjmk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gkx07"]
+atlas = ExtResource("1_hvxfd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5p7hr"]
+atlas = ExtResource("1_hvxfd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmq2u"]
+atlas = ExtResource("1_hvxfd")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqktf"]
+atlas = ExtResource("1_hvxfd")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_han4l"]
+atlas = ExtResource("1_hvxfd")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4ki0"]
+atlas = ExtResource("1_hvxfd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jr514"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gkx07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5p7hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmq2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqktf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_han4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4ki0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qift"]
+size = Vector2(26, 26)
+
+[node name="Coin" type="AnimatedSprite2D"]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_jr514")
+frame_progress = 0.467805
+script = ExtResource("2_7rt3b")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("2_ivjmk")
+value = 10
+type = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_3qift")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
