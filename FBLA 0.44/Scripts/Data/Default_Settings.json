@@ -1,0 +1,16 @@
+{
+	"version" : 0.00,
+	"tutorials" : true,
+	"fullscreen_on" : false,
+	"res" : [1280, 720],
+	"display_fps" : false,
+	"max_fps" : 60,
+	"brightness" : 50,
+	"master_vol" : 100,
+	"music_vol" : 100,
+	"sfx_vol" : 100,
+	"mouse_sens" : 1,
+	"bats" : true,
+	"night" : false,
+	"lang" : "English"
+}
